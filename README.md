@@ -115,27 +115,14 @@ FAQ answers are written in complete, natural sentences that AI systems can cite 
 
 ---
 
-## Form backend (required before launch)
+## Form backend
 
-The quote form currently validates client-side and shows a success message. It logs payload to the console.
+Quote requests are emailed to **sales@tythewindowguyor.com** via [FormSubmit](https://formsubmit.co).
 
-**Wire one of these:**
+- AJAX endpoint in `script.js`: `https://formsubmit.co/ajax/sales@tythewindowguyor.com`
+- HTML form `action` fallback: `https://formsubmit.co/sales@tythewindowguyor.com`
 
-### Option A — Formspree
-
-1. Create form at [formspree.io](https://formspree.io)  
-2. In `script.js`, replace the `TODO` `fetch` with your endpoint  
-3. Or set `action="https://formspree.io/f/YOUR_ID"` and `method="POST"` on the form  
-
-### Option B — Netlify Forms
-
-Add `netlify` attribute to the form and deploy on Netlify.
-
-### Option C — Email API / serverless
-
-POST `payload` to a Cloudflare Worker, AWS Lambda, or similar that emails Ty.
-
-**Suggested notification:** email + SMS for new leads during business hours.
+**Important:** The first submission (or FormSubmit’s activation email) must be **confirmed** in the `sales@tythewindowguyor.com` inbox before live leads are delivered.
 
 ---
 

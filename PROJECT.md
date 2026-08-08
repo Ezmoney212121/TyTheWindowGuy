@@ -13,7 +13,7 @@
 | GitHub | https://github.com/Ezmoney212121/TyTheWindowGuy |
 | Branch | `main` |
 | Hosting | Not deployed yet (GitHub Pages / custom domain pending) |
-| Contact form backend | **Not wired** — client validation + success UI only |
+| Contact form backend | **Wired** — FormSubmit → `sales@tythewindowguyor.com` |
 | Real photos / map / reviews widget | Placeholders only |
 
 **Overall:** Ready for content polish, form wiring, images, and launch. Not production-live.
@@ -205,9 +205,13 @@ Keep current single-page anchors until multi-page is intentional.
 ## Form behavior (`script.js`)
 
 - Required: name, phone (10+ digits), email, address, ≥1 service checkbox  
+- **Destination:** `sales@tythewindowguyor.com` via [FormSubmit](https://formsubmit.co) AJAX  
+  - Endpoint: `https://formsubmit.co/ajax/sales@tythewindowguyor.com`  
+  - Fallback form `action`: `https://formsubmit.co/sales@tythewindowguyor.com`  
 - On success: reset form, show `#formSuccess`  
-- Payload logged to `console.info` only  
-- **TODO:** Wire Formspree, Netlify Forms, or serverless email/SMS  
+- On failure: inline error + suggest calling (541) 633-8728  
+- Submit button shows “Sending…” while request is in flight  
+- **First-time setup:** FormSubmit emails `sales@tythewindowguyor.com` once to **activate** the inbox — someone must click the confirmation link before live leads arrive  
 - Optional GA4 `generate_lead` stub commented in JS  
 
 ---
@@ -226,7 +230,9 @@ Do not reintroduce logo → `scrollIntoView(#top)` on the sticky `<header id="to
 
 - [ ] Confirm phone, address, hours, years-in-business, insurance wording with Ty  
 - [ ] Replace placeholder images + map  
-- [ ] Wire form backend + test end-to-end  
+- [x] Wire form backend (FormSubmit → sales@tythewindowguyor.com)  
+- [ ] Activate FormSubmit via confirmation email to sales@ inbox  
+- [ ] Test form end-to-end (local + live URL)  
 - [ ] Set production domain in: meta canonical, OG, schema `url`/`@id`, robots, sitemap  
 - [ ] Real business email in schema/contact  
 - [ ] Connect Google Business Profile + live reviews  
@@ -253,7 +259,7 @@ Do not reintroduce logo → `scrollIntoView(#top)` on the sticky `<header id="to
 ### Suggested next tasks (priority order)
 
 1. Enable **GitHub Pages** (or other host) so Ty can share a URL  
-2. **Wire form** (Formspree is simplest for static host)  
+2. Activate FormSubmit email + test quote form  
 3. **Real photography** + map embed  
 4. Domain + schema/meta domain sweep  
 5. Optional multi-page SEO locations/services  

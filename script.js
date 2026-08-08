@@ -103,10 +103,20 @@
     return digits.length >= 10;
   }
 
+  /* Quote form → email sales@tythewindowguyor.com via FormSubmit */
+  var FORM_EMAIL_ENDPOINT =
+    "https://formsubmit.co/ajax/sales@tythewindowguyor.com";
+
   if (form) {
+    var submitBtn = form.querySelector('button[type="submit"]');
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       clearErrors(form);
+      if (successEl) successEl.hidden = true;
+
+      var existingFormError = form.querySelector(".form-submit-error");
+      if (existingFormError) existingFormError.remove();
 
       var nameInput = form.querySelector("#name");
       var phoneInput = form.querySelector("#phone");
@@ -156,39 +166,87 @@
         return;
       }
 
-      /* Collect payload for future Formspree / Netlify / email API wiring */
+      var servicesList = Array.prototype.map
+        .call(serviceChecks, function (c) {
+          return c.value;
+        })
+        .join(", ");
+
       var payload = {
         name: nameInput.value.trim(),
         phone: phoneInput.value.trim(),
         email: emailInput.value.trim(),
+        _replyto: emailInput.value.trim(),
         address: addressInput.value.trim(),
-        services: Array.prototype.map.call(serviceChecks, function (c) {
-          return c.value;
-        }),
+        services: servicesList,
         message: (form.querySelector("#message") || {}).value || "",
+        _subject: "New quote request — Ty The Window Guy website",
+        _template: "table",
+        _captcha: "false",
         source: "tythewindowguy-website",
-        submittedAt: new Date().toISOString(),
       };
 
-      // TODO: Replace with real endpoint, e.g.:
-      // fetch('https://formspree.io/f/YOUR_ID', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      //   body: JSON.stringify(payload)
-      // })
-      console.info("Quote request (wire to form backend):", payload);
-
-      form.reset();
-      if (successEl) {
-        successEl.hidden = false;
-        successEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.dataset.originalText = submitBtn.textContent;
+        submitBtn.textContent = "Sending…";
       }
 
-      /* Optional: fire analytics event when available
-      if (typeof gtag === 'function') {
-        gtag('event', 'generate_lead', { event_category: 'quote_form' });
-      }
-      */
+      fetch(FORM_EMAIL_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(function (res) {
+          if (!res.ok) {
+            return res.json().then(function (data) {
+              throw new Error(
+                (data && (data.message || data.error)) ||
+                  "Something went wrong sending your request."
+              );
+            }).catch(function (err) {
+              if (err && err.message && err.message.indexOf("Something") === -1) {
+                throw err;
+              }
+              throw new Error(
+                "Something went wrong sending your request. Please call (541) 633-8728."
+              );
+            });
+          }
+          return res.json();
+        })
+        .then(function () {
+          form.reset();
+          if (successEl) {
+            successEl.hidden = false;
+            successEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+          /* Optional analytics:
+          if (typeof gtag === "function") {
+            gtag("event", "generate_lead", { event_category: "quote_form" });
+          }
+          */
+        })
+        .catch(function (err) {
+          var errEl = document.createElement("p");
+          errEl.className = "form-error-msg form-submit-error";
+          errEl.setAttribute("role", "alert");
+          errEl.textContent =
+            (err && err.message) ||
+            "Unable to send right now. Please call (541) 633-8728.";
+          form.appendChild(errEl);
+          errEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent =
+              submitBtn.dataset.originalText || "Request Free Quote";
+          }
+        });
     });
   }
 

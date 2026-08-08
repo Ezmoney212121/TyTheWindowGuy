@@ -48,7 +48,7 @@
         "image": "https://www.tythewindowguy.com/images/logo.jpg",
         "url": "https://www.tythewindowguy.com/",
         "telephone": "+15416338728",
-        "email": "info@tythewindowguy.com",
+        "email": "sales@tythewindowguyor.com",
         "priceRange": "$$",
         "description": "Professional residential and commercial window cleaning serving Bend and Central Oregon. Interior and exterior windows, screens, skylights, roof debris clearing, and gutter cleaning.",
         "address": {
@@ -710,7 +710,19 @@
         </div>
 
         <div class="contact-form-wrap">
-          <form class="quote-form" id="quoteForm" action="#" method="post" novalidate>
+          <form
+            class="quote-form"
+            id="quoteForm"
+            action="https://formsubmit.co/sales@tythewindowguyor.com"
+            method="POST"
+            novalidate
+          >
+            <!-- Fallback fields if JS is off; JS uses FormSubmit AJAX to the same inbox -->
+            <input type="hidden" name="_subject" value="New quote request — Ty The Window Guy website">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
             <div class="form-row">
               <div class="form-field">
                 <label for="name">Name <span class="req">*</span></label>
