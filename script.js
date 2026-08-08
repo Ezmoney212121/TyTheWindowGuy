@@ -250,6 +250,82 @@
     });
   }
 
+  /* ---------- Projects gallery lightbox ---------- */
+  var projectsGrid = document.getElementById("projectsGrid");
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightboxImg");
+  var lightboxClose = document.getElementById("lightboxClose");
+  var lightboxPrev = document.getElementById("lightboxPrev");
+  var lightboxNext = document.getElementById("lightboxNext");
+  var projectCards = projectsGrid
+    ? Array.prototype.slice.call(projectsGrid.querySelectorAll(".project-card"))
+    : [];
+  var lightboxIndex = 0;
+  var lastFocused = null;
+
+  function openLightbox(index) {
+    if (!lightbox || !lightboxImg || !projectCards.length) return;
+    lightboxIndex = (index + projectCards.length) % projectCards.length;
+    var card = projectCards[lightboxIndex];
+    var src = card.getAttribute("data-full") || card.querySelector("img").src;
+    var img = card.querySelector("img");
+    lightboxImg.src = src;
+    lightboxImg.alt = img ? img.alt : "Project photo";
+    lastFocused = document.activeElement;
+    lightbox.hidden = false;
+    document.body.style.overflow = "hidden";
+    if (lightboxClose) lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.hidden = true;
+    lightboxImg.src = "";
+    document.body.style.overflow = "";
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  function showLightboxPrev() {
+    openLightbox(lightboxIndex - 1);
+  }
+
+  function showLightboxNext() {
+    openLightbox(lightboxIndex + 1);
+  }
+
+  if (projectsGrid && lightbox) {
+    projectCards.forEach(function (card, i) {
+      card.addEventListener("click", function () {
+        openLightbox(i);
+      });
+    });
+
+    if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+    if (lightboxPrev) {
+      lightboxPrev.addEventListener("click", function (e) {
+        e.stopPropagation();
+        showLightboxPrev();
+      });
+    }
+    if (lightboxNext) {
+      lightboxNext.addEventListener("click", function (e) {
+        e.stopPropagation();
+        showLightboxNext();
+      });
+    }
+
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (lightbox.hidden) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showLightboxPrev();
+      if (e.key === "ArrowRight") showLightboxNext();
+    });
+  }
+
   /* ---------- Smooth-scroll for same-page anchors (extra polish) ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener("click", function (e) {

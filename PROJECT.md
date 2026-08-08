@@ -130,14 +130,15 @@ Anchors / section IDs:
 3. Trust bar  
 4. `#services`  
 5. `#how-it-works`  
-6. `#reviews`  
-7. `#about`  
-8. `#service-area`  
-9. Mid-page CTA banner  
-10. `#faq`  
-11. `#contact` — quote form (primary conversion)  
-12. Footer NAP  
-13. Sticky mobile bar (hidden when contact is in view)
+6. `#projects` — photo gallery from Yelp (local copies in `images/projects/`)  
+7. `#reviews`  
+8. `#about`  
+9. `#service-area` (Google Map embed centered on Bend, OR)  
+10. Mid-page CTA banner  
+11. `#faq`  
+12. `#contact` — quote form (primary conversion)  
+13. Footer NAP  
+14. Sticky mobile bar (hidden when contact is in view)
 
 ### Page structure intent
 

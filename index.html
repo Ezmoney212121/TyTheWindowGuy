@@ -202,6 +202,7 @@
       <nav class="nav-desktop" aria-label="Primary">
         <a href="#services">Services</a>
         <a href="#how-it-works">How It Works</a>
+        <a href="#projects">Projects</a>
         <a href="#reviews">Reviews</a>
         <a href="#about">About</a>
         <a href="#service-area">Service Area</a>
@@ -224,6 +225,7 @@
     <nav class="nav-mobile" id="mobileNav" aria-label="Mobile" hidden>
       <a href="#services">Services</a>
       <a href="#how-it-works">How It Works</a>
+      <a href="#projects">Projects</a>
       <a href="#reviews">Reviews</a>
       <a href="#about">About</a>
       <a href="#service-area">Service Area</a>
@@ -429,6 +431,70 @@
         </div>
       </div>
     </section>
+
+    <!-- ===== PROJECTS / GALLERY ===== -->
+    <section class="section projects" id="projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Our Work</p>
+          <h2 id="projects-heading">Projects Across Bend &amp; Central Oregon</h2>
+          <p class="section-lead">
+            Real jobs on real homes and businesses — multi-story glass, commercial storefronts, high vaulted interiors, and the pine-country details that come with Central Oregon living.
+          </p>
+        </header>
+
+        <div class="projects-grid" id="projectsGrid">
+          <button type="button" class="project-card" data-full="images/projects/project-01.jpg" aria-label="View larger: two-story wood-framed windows overlooking water">
+            <img src="images/projects/project-01.jpg" alt="Two-story wood-framed windows on a Central Oregon home with ladders set for exterior cleaning" width="600" height="450" loading="lazy" decoding="async">
+          </button>
+          <button type="button" class="project-card" data-full="images/projects/project-02.jpg" aria-label="View larger: row of residential windows with ladder">
+            <img src="images/projects/project-02.jpg" alt="Row of large residential windows being cleaned with a ladder against gray siding" width="600" height="450" loading="lazy" decoding="async">
+          </button>
+          <button type="button" class="project-card" data-full="images/projects/project-03.jpg" aria-label="View larger: high exterior windows near stone chimney">
+            <img src="images/projects/project-03.jpg" alt="Technician on a tall ladder cleaning high windows beside a stone chimney on a modern home" width="600" height="450" loading="lazy" decoding="async">
+          </button>
+          <button type="button" class="project-card" data-full="images/projects/project-04.jpg" aria-label="View larger: sliding glass doors and clerestory windows">
+            <img src="images/projects/project-04.jpg" alt="Clean sliding glass doors and upper clerestory windows reflecting pine forest views" width="600" height="450" loading="lazy" decoding="async">
+          </button>
+          <button type="button" class="project-card project-card--wide" data-full="images/projects/project-05.jpg" aria-label="View larger: large multi-level home exterior window cleaning">
+            <img src="images/projects/project-05.jpg" alt="Multi-level Central Oregon home with crew cleaning large upper windows from ladders" width="800" height="500" loading="lazy" decoding="async">
+          </button>
+          <button type="button" class="project-card" data-full="images/projects/project-06.jpg" aria-label="View larger: vaulted great room interior windows">
+            <img src="images/projects/project-06.jpg" alt="Vaulted great room with floor-to-ceiling and clerestory windows cleaned for bright interior light" width="600" height="450" loading="lazy" decoding="async">
+          </button>
+          <button type="button" class="project-card" data-full="images/projects/project-07.jpg" aria-label="View larger: commercial mixed-use building windows">
+            <img src="images/projects/project-07.jpg" alt="Modern mixed-use commercial building with clean storefront and upper-story windows in Bend" width="600" height="450" loading="lazy" decoding="async">
+          </button>
+          <button type="button" class="project-card" data-full="images/projects/project-08.jpg" aria-label="View larger: high gable window cleaning">
+            <img src="images/projects/project-08.jpg" alt="Tall extension ladder reaching a high gable window on a two-story home" width="600" height="450" loading="lazy" decoding="async">
+          </button>
+          <button type="button" class="project-card" data-full="images/projects/project-09.jpg" aria-label="View larger: commercial interior lobby glass wall">
+            <img src="images/projects/project-09.jpg" alt="Large commercial lobby glass wall cleaned from the interior with extension ladders" width="600" height="450" loading="lazy" decoding="async">
+          </button>
+          <button type="button" class="project-card" data-full="images/projects/project-10.jpg" aria-label="View larger: two-story residential exterior windows">
+            <img src="images/projects/project-10.jpg" alt="Two-story light blue home with ladders set for multi-level exterior window cleaning" width="600" height="450" loading="lazy" decoding="async">
+          </button>
+        </div>
+
+        <p class="projects-credit">
+          Photos from our
+          <a href="https://www.yelp.com/biz/ty-the-window-guy-bend" target="_blank" rel="noopener noreferrer">Yelp business profile</a>
+          — see more reviews and photos there.
+        </p>
+
+        <div class="section-cta">
+          <a href="#contact" class="btn btn-primary btn-lg">Get a Free Quote for Your Project</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project lightbox -->
+    <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Project photo">
+      <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close photo">&times;</button>
+      <button type="button" class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#8249;</button>
+      <img src="" alt="" id="lightboxImg" class="lightbox-img">
+      <button type="button" class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">&#8250;</button>
+    </div>
 
     <!-- ===== REVIEWS ===== -->
     <section class="section reviews" id="reviews" aria-labelledby="reviews-heading">
@@ -836,6 +902,7 @@
         <h3>Explore</h3>
         <ul>
           <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#projects">Projects</a></li>
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#about">About Ty</a></li>
           <li><a href="#service-area">Service Area</a></li>
