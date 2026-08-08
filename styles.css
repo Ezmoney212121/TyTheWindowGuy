@@ -739,7 +739,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media (min-width: 960px) {
-  /* 4 columns × 10 photos → last row has 2 tiles + open space bottom-right */
+  /* 4 columns × 12 photos → three full rows */
   .projects-grid {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.1rem;
