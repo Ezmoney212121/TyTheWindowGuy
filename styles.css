@@ -951,35 +951,34 @@ p:last-child { margin-bottom: 0; }
   color: var(--color-muted);
 }
 
-.map-placeholder {
+.area-map {
+  min-height: 320px;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  background: var(--color-sand-100);
+}
+
+.area-map-embed {
+  display: block;
+  width: 100%;
   height: 100%;
   min-height: 320px;
-  background: var(--color-sand-100);
-  border: 2px dashed var(--color-sky-200);
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  color: var(--color-sky-700);
+  border: 0;
 }
 
-.map-placeholder svg {
-  margin: 0 auto 0.75rem;
-  opacity: 0.7;
-}
+@media (min-width: 800px) {
+  .area-map,
+  .area-map-embed {
+    min-height: 100%;
+    height: 100%;
+  }
 
-.map-placeholder p {
-  margin: 0.25rem 0;
-  color: var(--color-muted);
-  font-size: 0.925rem;
-}
-
-.map-address {
-  margin-top: 0.75rem !important;
-  font-weight: 600;
-  color: var(--color-sky-800) !important;
+  .area-map-embed {
+    min-height: 380px;
+  }
 }
 
 /* ===== CTA Banner ===== */
