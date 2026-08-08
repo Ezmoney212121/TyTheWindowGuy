@@ -267,22 +267,39 @@ p:last-child { margin-bottom: 0; }
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.55rem;
   text-decoration: none;
   color: var(--color-ink);
   flex-shrink: 0;
+  max-width: min(280px, 58vw);
 }
 .logo:hover { color: var(--color-sky-700); text-decoration: none; }
 
-.logo-mark {
-  display: flex;
-  color: var(--color-sky-600);
+.logo-img {
+  display: block;
+  height: 52px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.logo-img--footer {
+  height: 64px;
+  max-width: 180px;
 }
 
 .logo-text {
-  display: flex;
+  display: none;
   flex-direction: column;
   line-height: 1.15;
+}
+
+/* Tagline only from sm+ to avoid crowding mobile header */
+@media (min-width: 420px) {
+  .logo-text {
+    display: flex;
+  }
 }
 
 .logo-name {
@@ -297,6 +314,7 @@ p:last-child { margin-bottom: 0; }
   font-weight: 500;
   color: var(--color-muted);
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .nav-desktop {
@@ -1469,9 +1487,13 @@ p:last-child { margin-bottom: 0; }
   .footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
 }
 
-.logo--footer { color: white; margin-bottom: 0.85rem; }
+.logo--footer {
+  color: white;
+  margin-bottom: 0.85rem;
+  max-width: 240px;
+}
 .logo--footer:hover { color: var(--color-sky-100); }
-.logo--footer .logo-mark { color: var(--color-sky-200); }
+.logo--footer .logo-text { display: flex; }
 .logo--footer .logo-tag { color: rgba(255, 255, 255, 0.55); }
 
 .footer-brand p {
