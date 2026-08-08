@@ -302,7 +302,7 @@ p:last-child { margin-bottom: 0; }
   font-weight: 600;
   font-size: 1.05rem;
   letter-spacing: -0.02em;
-  color: var(--color-sky-900);
+  color: var(--color-sky-600);
   white-space: nowrap;
 }
 
