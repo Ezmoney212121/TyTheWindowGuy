@@ -1,0 +1,7 @@
+# Ty The Window Guy — robots.txt
+# Update Sitemap URL to production domain before launch
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.tythewindowguy.com/sitemap.xml
