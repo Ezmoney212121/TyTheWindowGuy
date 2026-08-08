@@ -240,14 +240,38 @@
   </header>
 
   <main id="main">
-    <!-- ===== HERO ===== -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <!-- PLACEHOLDER: Replace with real photo of sparkling windows / Bend home exterior -->
-      <div class="hero-bg" role="img" aria-label="Placeholder: sparkling clean windows on a Central Oregon home overlooking mountain views">
-        <div class="hero-bg-overlay"></div>
-        <div class="hero-bg-pattern" aria-hidden="true"></div>
+    <!-- ===== HERO (squeegee wipe reveal) ===== -->
+    <section class="hero hero--wipe" id="hero" aria-labelledby="hero-heading" data-wipe-state="ready">
+      <div class="hero-stage" aria-hidden="true">
+        <img
+          class="hero-plate hero-plate--soapy"
+          src="images/hero/soapy.jpg"
+          alt=""
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="hero-plate-clean-wrap" id="heroCleanWrap">
+          <img
+            class="hero-plate hero-plate--clean"
+            src="images/hero/clean.jpg"
+            alt=""
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+            decoding="async"
+          >
+          <div class="hero-clean-shade"></div>
+        </div>
+        <div class="hero-squeegee" id="heroSqueegee">
+          <img src="images/hero/squeegee.png" alt="" width="800" height="450" decoding="async">
+          <span class="hero-squeegee-shine"></span>
+        </div>
+        <div class="hero-soap-mist" id="heroSoapMist"></div>
       </div>
-      <div class="container hero-content">
+
+      <div class="container hero-content" id="heroContent">
         <div class="hero-badge">
           <span class="stars" aria-label="5.0 stars">★★★★★</span>
           <span>5.0-Star Rated · Locally Owned</span>
@@ -265,6 +289,10 @@
         </div>
         <p class="hero-note">Free quotes · Fully insured · Mon–Fri 8 AM – 5 PM</p>
       </div>
+
+      <button type="button" class="hero-replay" id="heroReplay" hidden>
+        Replay wipe
+      </button>
     </section>
 
     <!-- ===== TRUST BAR ===== -->

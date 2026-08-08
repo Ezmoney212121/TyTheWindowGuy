@@ -12,6 +12,89 @@
     yearEl.textContent = String(new Date().getFullYear());
   }
 
+  /* ---------- Hero squeegee wipe reveal ---------- */
+  (function initHeroWipe() {
+    var hero = document.getElementById("hero");
+    if (!hero || !hero.classList.contains("hero--wipe")) return;
+
+    var replayBtn = document.getElementById("heroReplay");
+    var reduceMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    var DURATION_MS = 3200;
+    var START_DELAY_MS = 350;
+    var rafId = null;
+    var startTime = 0;
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function setWipe(p) {
+      var v = Math.max(0, Math.min(1, p));
+      hero.style.setProperty("--wipe", String(v));
+    }
+
+    function finish() {
+      setWipe(1);
+      hero.setAttribute("data-wipe-state", "done");
+      if (replayBtn) replayBtn.hidden = false;
+      rafId = null;
+    }
+
+    function frame(now) {
+      if (!startTime) startTime = now;
+      var t = (now - startTime) / DURATION_MS;
+      if (t >= 1) {
+        finish();
+        return;
+      }
+      setWipe(easeInOutCubic(t));
+      rafId = requestAnimationFrame(frame);
+    }
+
+    function play() {
+      if (rafId) cancelAnimationFrame(rafId);
+      if (replayBtn) replayBtn.hidden = true;
+      startTime = 0;
+      setWipe(0);
+      hero.setAttribute("data-wipe-state", "playing");
+
+      if (reduceMotion) {
+        finish();
+        return;
+      }
+
+      window.setTimeout(function () {
+        rafId = requestAnimationFrame(frame);
+      }, START_DELAY_MS);
+    }
+
+    /* Wait for soapy plate so first paint isn’t empty */
+    var soapy = hero.querySelector(".hero-plate--soapy");
+    function kickoff() {
+      play();
+    }
+
+    if (soapy && !soapy.complete) {
+      soapy.addEventListener("load", kickoff, { once: true });
+      soapy.addEventListener("error", kickoff, { once: true });
+      /* Fallback if cached incomplete edge case */
+      window.setTimeout(function () {
+        if (hero.getAttribute("data-wipe-state") === "ready") kickoff();
+      }, 1200);
+    } else {
+      kickoff();
+    }
+
+    if (replayBtn) {
+      replayBtn.addEventListener("click", function () {
+        play();
+      });
+    }
+  })();
+
   /* ---------- Mobile navigation ---------- */
   var navToggle = document.getElementById("navToggle");
   var mobileNav = document.getElementById("mobileNav");
